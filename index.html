@@ -26,6 +26,14 @@
             60% { content: '...'; }
             80%, 100% { content: ''; }
         }
+        .floating { 
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translatey(0px); }
+            50% { transform: translatey(-20px); }
+            100% { transform: translatey(0px); }
+        }
     </style>
 </head>
 <body class="text-slate-800 bg-white">
@@ -34,12 +42,9 @@
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-4">
-                <!-- Custom SVG Logo: Health, Protection, Security -->
                 <div class="bg-blue-600 p-2 rounded-xl text-white shadow-lg shadow-blue-200 shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <!-- Shield (Protection) -->
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        <!-- Subtle Internal Cross Detail for Health (optional/visual) -->
                     </svg>
                 </div>
                 <div class="flex flex-col">
@@ -56,22 +61,42 @@
     <!-- Hero Section -->
     <section class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden bg-slate-50">
         <div class="max-w-6xl mx-auto px-6 relative z-10">
-            <div class="md:w-3/4 lg:w-2/3">
-                               
-                <h2 class="text-3xl md:text-5xl font-bold text-slate-800 leading-tight mb-6">
-                    Hospital bills shouldn't be your first Canadian surprise.
-                </h2>
-                <p class="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed max-w-xl">
-                    Ontario's health care is world-class, but it isn't free until your OHIP starts. I help newcomers secure protection before the waiting period ends.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#consultation" class="bg-blue-600 hover:bg-blue-700 text-white text-center px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-200">
-                        Book Free Consultation
-                    </a>
-                    <a href="#ai-assistant" class="bg-blue-50 border border-blue-200 text-blue-700 text-center px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2 hover:bg-blue-100">
-                        ✨ Get AI Recommendation
-                    </a>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Text Column -->
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-bold text-slate-800 leading-tight mb-6">
+                        Hospital bills shouldn't be your first Canadian surprise.
+                    </h2>
+                    <p class="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed">
+                        Ontario's health care is world-class, but it isn't free until your OHIP starts. I help newcomers secure protection before the waiting period ends.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#consultation" class="bg-blue-600 hover:bg-blue-700 text-white text-center px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-200">
+                            Book Free Consultation
+                        </a>
+                        <a href="#ai-assistant" class="bg-blue-50 border border-blue-200 text-blue-700 text-center px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2 hover:bg-blue-100">
+                            ✨ Get AI Recommendation
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Clipart Column (Peace of Mind) -->
+                <div class="hidden md:flex justify-center items-center floating">
+                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-sm drop-shadow-2xl">
+                        <!-- Background Circle -->
+                        <circle cx="200" cy="200" r="180" fill="#DBEAFE" />
+                        <!-- Shield (Security) -->
+                        <path d="M200 40C150 40 100 60 100 60V180C100 240 140 300 200 340C260 300 300 240 300 180V60C300 60 250 40 200 40Z" fill="#2563EB" opacity="0.1" />
+                        <!-- Meditating/Calm Figure -->
+                        <circle cx="200" cy="140" r="35" fill="#1D4ED8" />
+                        <path d="M200 185C160 185 130 210 130 250V300H270V250C270 210 240 185 200 185Z" fill="#1D4ED8" />
+                        <!-- Heart/Health Symbol -->
+                        <path d="M200 215C200 215 195 205 185 205C175 205 170 212 170 220C170 235 200 250 200 250C200 250 230 235 230 220C230 212 225 205 215 205C205 205 200 215 200 215Z" fill="#F87171" />
+                        <!-- Protective Rings -->
+                        <circle cx="200" cy="200" r="150" stroke="#60A5FA" stroke-width="4" stroke-dasharray="10 20" fill="none" opacity="0.5" />
+                        <circle cx="200" cy="200" r="120" stroke="#93C5FD" stroke-width="2" fill="none" opacity="0.3" />
+                    </svg>
                 </div>
             </div>
         </div>
@@ -339,13 +364,14 @@
         <div class="max-w-4xl mx-auto px-6 text-center">
             <h2 class="text-4xl font-bold mb-6 italic">"Don’t wait for an emergency to find out you’re not covered."</h2>
             <p class="text-xl text-blue-100 mb-10 max-w-xl mx-auto">
-                Secure your future in Canada with a quick 15-minute consultation. Available via phone or whatsapp.
+                Secure your future in Canada with a quick 15-minute consultation. Available via phone or WhatsApp.
             </p>
             
             <div class="bg-white text-slate-900 p-10 rounded-3xl max-w-lg mx-auto shadow-2xl">
                 <h3 class="text-2xl font-bold mb-2">Shatavarth Warulkar</h3>
                 <p class="text-slate-500 mb-8">Licensed Insurance Advisor</p>
-<div data-fillout-id="kqPnsP9UVrus" data-fillout-embed-type="popup" data-fillout-button-text="Book Your Consultation" data-fillout-dynamic-resize data-fillout-inherit-parameters data-fillout-popup-size="medium"></div><script src="https://server.fillout.com/embed/v1/"></script>
+                <div data-fillout-id="kqPnsP9UVrus" data-fillout-embed-type="popup" data-fillout-button-text="Book Your Consultation" data-fillout-dynamic-resize data-fillout-inherit-parameters data-fillout-popup-size="medium"></div>
+                <script src="https://server.fillout.com/embed/v1/"></script>
                 <div id="success-msg" class="hidden mt-6 p-4 bg-green-50 rounded-xl border border-green-200 text-green-700 font-bold">
                     Success! Shatavarth will reach out to you within 24 hours.
                 </div>
@@ -362,7 +388,7 @@
                     <p class="text-sm">Licensed Insurance Advisor — Ontario, Canada</p>
                 </div>
                 <div class="text-xs max-w-md space-y-3 leading-relaxed">
-                    <p>© 2024 Shatavarth Warulkar. All rights reserved.</p>
+                    <p>© 2025 Shatavarth Warulkar. All rights reserved.</p>
                     <p class="italic opacity-60">Legal Disclaimer: I am a licensed insurance advisor in Ontario. Insurance coverage is subject to insurer eligibility requirements, age, and health status. All pricing shown is illustrative and subject to final quote approval by the carrier.</p>
                 </div>
             </div>
@@ -448,14 +474,6 @@
                 loading.classList.add('hidden');
                 button.disabled = false;
             }
-        }
-
-        function showSuccess() {
-            document.getElementById('success-msg').classList.remove('hidden');
-            // Reset form
-            document.getElementById('name').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('status').selectedIndex = 0;
         }
     </script>
 
