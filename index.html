@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shatavarth Warulkar | Ontario Licensed Insurance Advisor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .trust-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+        }
+        .loading-dots:after {
+            content: '.';
+            animation: dots 1.5s steps(5, end) infinite;
+        }
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60% { content: '...'; }
+            80%, 100% { content: ''; }
+        }
+    </style>
+</head>
+<body class="text-slate-800 bg-white">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <!-- Custom SVG Logo: Health, Protection, Security -->
+                <div class="bg-blue-600 p-2 rounded-xl text-white shadow-lg shadow-blue-200 shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <!-- Shield (Protection) -->
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        <!-- Subtle Internal Cross Detail for Health (optional/visual) -->
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-xl md:text-2xl tracking-tight text-slate-900 leading-tight">Shatavarth Warulkar</span>
+                    <span class="text-[10px] md:text-xs font-semibold text-blue-600 uppercase tracking-widest">Your trusted insurance advisor</span>
+                </div>
+            </div>
+            <a href="#consultation" class="hidden md:block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition-colors text-sm">
+                Book Free Consultation
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden bg-slate-50">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="md:w-3/4 lg:w-2/3">
+                               
+                <h2 class="text-3xl md:text-5xl font-bold text-slate-800 leading-tight mb-6">
+                    Hospital bills shouldn't be your first Canadian surprise.
+                </h2>
+                <p class="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed max-w-xl">
+                    Ontario's health care is world-class, but it isn't free until your OHIP starts. I help newcomers secure protection before the waiting period ends.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#consultation" class="bg-blue-600 hover:bg-blue-700 text-white text-center px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-200">
+                        Book Free Consultation
+                    </a>
+                    <a href="#ai-assistant" class="bg-blue-50 border border-blue-200 text-blue-700 text-center px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2 hover:bg-blue-100">
+                        ✨ Get AI Recommendation
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute top-0 right-0 -z-10 w-1/2 h-full bg-white opacity-40 hidden lg:block" style="clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);"></div>
+    </section>
+
+    <!-- AI Recommendation Tool -->
+    <section id="ai-assistant" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-8 md:p-12 border border-blue-100 shadow-sm">
+                <div class="max-w-2xl">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900">
+                        ✨ Smart Plan Recommender
+                    </h2>
+                    <p class="text-slate-600 mb-8">
+                        Not sure which plan fits your situation? Tell Shatavarth's AI assistant about your journey to Canada, and get an instant professional suggestion.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <textarea 
+                            id="userContext"
+                            rows="3" 
+                            class="w-full px-4 py-3 rounded-xl border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-600 text-slate-700 placeholder:text-slate-400"
+                            placeholder="e.g., I'm a 28yo worker arriving in London, Ontario next week on a 3-year permit. I'm healthy but want basic emergency coverage..."></textarea>
+                        
+                        <button 
+                            onclick="generateRecommendation()"
+                            id="aiButton"
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-bold transition-all flex items-center gap-2">
+                            ✨ Generate Recommendation
+                        </button>
+                    </div>
+
+                    <div id="aiLoading" class="hidden mt-8 text-blue-600 font-medium animate-pulse">
+                        <span class="loading-dots">Analyzing your situation</span>
+                    </div>
+
+                    <div id="aiResponse" class="hidden mt-8 p-6 bg-white rounded-2xl border border-blue-200 shadow-sm text-slate-700 leading-relaxed">
+                        <!-- AI Response will appear here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Problem -->
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-4">The Reality of the OHIP Waiting Period</h2>
+            <p class="text-center text-slate-600 mb-12">Most newcomers don't realize the financial risk until it's too late.</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <div class="bg-red-100 p-2 rounded-full mt-1">
+                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">No OHIP = Private Billing</h3>
+                                <p class="text-slate-600">Until your card arrives, hospitals bill you as a private patient at premium rates.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="bg-red-100 p-2 rounded-full mt-1">
+                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">ER Visits are Costly</h3>
+                                <p class="text-slate-600">A basic emergency visit can cost $800–$1,200 just for the initial physician assessment.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <div class="bg-red-100 p-2 rounded-full mt-1">
+                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Unexpected Stays</h3>
+                                <p class="text-slate-600">Overnight hospital stays often exceed $3,000 per day, not including tests or medication.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="bg-red-100 p-2 rounded-full mt-1">
+                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">The Critical Gap</h3>
+                                <p class="text-slate-600">Health issues don't wait for your paperwork. Protection is needed from day one.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Solution -->
+    <section class="py-20 bg-blue-600 text-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 items-center gap-16">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-white">Temporary Coverage, Total Peace of Mind</h2>
+                    <p class="text-lg text-blue-50 mb-8">
+                        Private health insurance acts as your bridge to OHIP. It covers the essentials so a minor accident doesn't become a major financial burden.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-white/20 p-1 rounded-full"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                            <span class="text-lg">Emergency hospital room & board</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="bg-white/20 p-1 rounded-full"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                            <span class="text-lg">X-rays, lab tests, and diagnostics</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="bg-white/20 p-1 rounded-full"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                            <span class="text-lg">Doctor fees & specialist visits</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="bg-white/20 p-1 rounded-full"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                            <span class="text-lg">Emergency ambulance transportation</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-10 border border-white/20">
+                    <blockquote class="text-2xl font-medium italic mb-6">
+                        "As your advisor, I specialize in navigating the Canadian system for newcomers. I make sure you have the right plan for your visa status, whether you're a student, worker, or new PR."
+                    </blockquote>
+                    <p class="font-bold">— Shatavarth Warulkar</p>
+                    <p class="text-sm text-blue-100">Licensed Insurance Advisor, Ontario</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages -->
+    <section id="packages" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Single Person Coverage Options</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Estimated monthly ranges based on typical newcomer health profiles in Ontario.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Basic -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-8 flex flex-col hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-xl font-bold mb-2">Essential Care</h3>
+                    <p class="text-slate-500 text-sm mb-6 italic">For the budget-conscious visitor.</p>
+                    <div class="mb-6">
+                        <span class="text-3xl font-bold">$40 - $60</span>
+                        <span class="text-slate-500">/ month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-grow">
+                        <li class="flex items-start gap-2 text-sm">
+                            <svg class="w-5 h-5 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Emergency Hospitalization
+                        </li>
+                        <li class="flex items-start gap-2 text-sm">
+                            <svg class="w-5 h-5 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Accidental ER visits
+                        </li>
+                    </ul>
+                    <a href="#consultation" class="w-full py-3 bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-800 rounded-lg font-bold text-center transition-all">Select Plan</a>
+                </div>
+
+                <!-- Standard -->
+                <div class="bg-white border-2 border-blue-600 rounded-2xl p-8 flex flex-col relative scale-105 shadow-2xl">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-widest">Most Popular</div>
+                    <h3 class="text-xl font-bold mb-2 text-blue-600">Standard Bridge</h3>
+                    <p class="text-slate-500 text-sm mb-6 italic">For Work Permit holders & PRs.</p>
+                    <div class="mb-6">
+                        <span class="text-3xl font-bold">$65 - $85</span>
+                        <span class="text-slate-500">/ month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-grow">
+                        <li class="flex items-start gap-2 text-sm">
+                            <svg class="w-5 h-5 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Full Hospitalization Coverage
+                        </li>
+                        <li class="flex items-start gap-2 text-sm">
+                            <svg class="w-5 h-5 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Diagnostics & Lab Tests
+                        </li>
+                        <li class="flex items-start gap-2 text-sm">
+                            <svg class="w-5 h-5 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Prescriptions (Accident)
+                        </li>
+                    </ul>
+                    <a href="#consultation" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-center transition-all">Select Plan</a>
+                </div>
+
+                <!-- Premium -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-8 flex flex-col hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-xl font-bold mb-2 text-slate-900">Comprehensive</h3>
+                    <p class="text-slate-500 text-sm mb-6 italic">Maximum peace of mind.</p>
+                    <div class="mb-6">
+                        <span class="text-3xl font-bold">$90 - $120</span>
+                        <span class="text-slate-500">/ month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-grow">
+                        <li class="flex items-start gap-2 text-sm">
+                            <svg class="w-5 h-5 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Everything in Standard
+                        </li>
+                        <li class="flex items-start gap-2 text-sm">
+                            <svg class="w-5 h-5 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Follow-up Doctor Visits
+                        </li>
+                        <li class="flex items-start gap-2 text-sm">
+                            <svg class="w-5 h-5 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Emergency Dental
+                        </li>
+                    </ul>
+                    <a href="#consultation" class="w-full py-3 bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-800 rounded-lg font-bold text-center transition-all">Select Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Me -->
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Why Work With Me?</h2>
+                <p class="text-slate-600">Shatavarth Warulkar — Your partner in Canadian healthcare transitions.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-10 text-left">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        Ontario Licensed
+                    </h4>
+                    <p class="text-slate-600 text-sm">I am a fully licensed advisor in the province of Ontario, held to the highest professional standards.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                        Unbiased Options
+                    </h4>
+                    <p class="text-slate-600 text-sm">I work with multiple leading Canadian insurers to compare rates and find the best fit for your budget.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        Same-Day Setup
+                    </h4>
+                    <p class="text-slate-600 text-sm">Coverage can be active as early as tomorrow morning. No medical exams are needed for these plans.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+                        Free Guidance
+                    </h4>
+                    <p class="text-slate-600 text-sm">My advice is free. I help you understand the "fine print" so you can make an informed decision.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="consultation" class="py-24 bg-blue-900 text-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-6 italic">"Don’t wait for an emergency to find out you’re not covered."</h2>
+            <p class="text-xl text-blue-100 mb-10 max-w-xl mx-auto">
+                Secure your future in Canada with a quick 15-minute consultation. Available via phone or whatsapp.
+            </p>
+            
+            <div class="bg-white text-slate-900 p-10 rounded-3xl max-w-lg mx-auto shadow-2xl">
+                <h3 class="text-2xl font-bold mb-2">Shatavarth Warulkar</h3>
+                <p class="text-slate-500 mb-8">Licensed Insurance Advisor</p>
+<div data-fillout-id="kqPnsP9UVrus" data-fillout-embed-type="popup" data-fillout-button-text="Book Your Consultation" data-fillout-dynamic-resize data-fillout-inherit-parameters data-fillout-popup-size="medium"></div><script src="https://server.fillout.com/embed/v1/"></script>
+                <div id="success-msg" class="hidden mt-6 p-4 bg-green-50 rounded-xl border border-green-200 text-green-700 font-bold">
+                    Success! Shatavarth will reach out to you within 24 hours.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-500 py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+                <div>
+                    <h4 class="text-white font-bold text-xl mb-1">Shatavarth Warulkar</h4>
+                    <p class="text-sm">Licensed Insurance Advisor — Ontario, Canada</p>
+                </div>
+                <div class="text-xs max-w-md space-y-3 leading-relaxed">
+                    <p>© 2024 Shatavarth Warulkar. All rights reserved.</p>
+                    <p class="italic opacity-60">Legal Disclaimer: I am a licensed insurance advisor in Ontario. Insurance coverage is subject to insurer eligibility requirements, age, and health status. All pricing shown is illustrative and subject to final quote approval by the carrier.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Logic -->
+    <script>
+        const apiKey = ""; // Provided by environment
+
+        async function generateRecommendation() {
+            const context = document.getElementById('userContext').value;
+            const responseArea = document.getElementById('aiResponse');
+            const loading = document.getElementById('aiLoading');
+            const button = document.getElementById('aiButton');
+
+            if (!context.trim()) {
+                responseArea.classList.remove('hidden');
+                responseArea.innerHTML = "Please tell me a little bit about your situation first!";
+                return;
+            }
+
+            loading.classList.remove('hidden');
+            responseArea.classList.add('hidden');
+            button.disabled = true;
+
+            const systemPrompt = `You are a helpful Insurance Assistant for Shatavarth Warulkar, an Ontario-based licensed insurance advisor. 
+            Your goal is to recommend one of three plans to a newcomer to Canada:
+            1. Essential Care ($40-$60): Basic emergency/hospital only. Good for budget visitors.
+            2. Standard Bridge ($65-$85): Most popular. Good for workers/students who need robust hospitalization and diagnostics.
+            3. Comprehensive ($90-$120): Best peace of mind. Adds follow-up visits and dental.
+            
+            Keep your tone professional, calm, and welcoming. Explain WHY you recommend a specific plan based on their details. 
+            Do not provide financial advice, just professional insurance recommendations. 
+            Always end with a friendly nudge to book a call with Shatavarth for the exact quote.
+            Use clear formatting with bold text.`;
+
+            const payload = {
+                contents: [{
+                    parts: [{
+                        text: `The user says: "${context}". Based on this, which of the three plans would Shatavarth likely recommend and why?`
+                    }]
+                }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                }
+            };
+
+            try {
+                let success = false;
+                let retries = 0;
+                let delay = 1000;
+
+                while (!success && retries < 5) {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                        
+                        responseArea.innerHTML = text.replace(/\n/g, '<br>');
+                        responseArea.classList.remove('hidden');
+                        success = true;
+                    } else {
+                        retries++;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay *= 2;
+                    }
+                }
+
+                if (!success) {
+                    throw new Error("Service unavailable");
+                }
+
+            } catch (error) {
+                responseArea.classList.remove('hidden');
+                responseArea.innerHTML = "I'm sorry, I'm having trouble connecting to the recommendation engine. Please scroll down to book a call with Shatavarth directly!";
+            } finally {
+                loading.classList.add('hidden');
+                button.disabled = false;
+            }
+        }
+
+        function showSuccess() {
+            document.getElementById('success-msg').classList.remove('hidden');
+            // Reset form
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('status').selectedIndex = 0;
+        }
+    </script>
+
+</body>
+</html>
