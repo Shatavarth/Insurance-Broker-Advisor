@@ -370,7 +370,7 @@
             <div class="bg-white text-slate-900 p-10 rounded-3xl max-w-lg mx-auto shadow-2xl">
                 <h3 class="text-2xl font-bold mb-2">Shatavarth Warulkar</h3>
                 <p class="text-slate-500 mb-8">Licensed Insurance Advisor</p>
-               <div data-fillout-id="kqPnsP9UVrus" data-fillout-embed-type="popup" data-fillout-button-text="Book Your Consultation" data-fillout-dynamic-resize data-fillout-inherit-parameters data-fillout-popup-size="medium"></div><script src="https://server.fillout.com/embed/v1/"></script>
+               <div data-fillout-id="kqPnsP9UVrus" data-fillout-embed-type="popup" data-fillout-button-text="Book Your Free Consultation" data-fillout-dynamic-resize data-fillout-inherit-parameters data-fillout-popup-size="medium"></div><script src="https://server.fillout.com/embed/v1/"></script>
                 <div id="success-msg" class="hidden mt-6 p-4 bg-green-50 rounded-xl border border-green-200 text-green-700 font-bold">
                     Success! Shatavarth will reach out to you within 24 hours.
                 </div>
@@ -422,7 +422,7 @@
             
             Keep your tone professional, calm, and welcoming. Explain WHY you recommend a specific plan based on their details. 
             Do not provide financial advice, just professional insurance recommendations. 
-            Always end with a friendly nudge to book a call with Shatavarth for the exact quote.
+            Always end with a friendly nudge to book a free call with Shatavarth for the exact quote.
             Use clear formatting with bold text.`;
 
             const payload = {
@@ -468,7 +468,7 @@
 
             } catch (error) {
                 responseArea.classList.remove('hidden');
-                responseArea.innerHTML = "I'm sorry, I'm having trouble connecting to the recommendation engine. Please scroll down to book a call with Shatavarth directly!";
+                responseArea.innerHTML = "I'm sorry, I'm having trouble connecting to the recommendation engine. Please scroll down to book a free call with Shatavarth directly!";
             } finally {
                 loading.classList.add('hidden');
                 button.disabled = false;
